@@ -41,10 +41,22 @@ public class CircularBuffer {
     }
 
     private void nextWritePointer() {
-        // TODO
+        if (isEndBuffer(writePointer)) {
+            writePointer = 0;
+            return;
+        }
+        writePointer++;
     }
 
     private void nextReadPointer() {
-        // TODO
+        if (isEndBuffer(readPointer)) {
+            readPointer = 0;
+            return;
+        }
+        readPointer++;
+    }
+
+    private boolean isEndBuffer(int pointer) {
+        return pointer == buffer.length-1;
     }
 }
