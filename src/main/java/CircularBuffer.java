@@ -17,4 +17,34 @@ public class CircularBuffer {
     public void create(int size) {
         init(size);
     }
+
+    public void write(String input) {
+        int pointer = getWritePointer();
+        nextWritePointer();
+
+        buffer[pointer] = input;
+    }
+
+
+    public String read() {
+        int pointer = getReadPointer();
+        nextReadPointer();
+
+        return buffer[pointer];
+    }
+
+    public int getWritePointer() {
+        return writePointer;
+    }
+    public int getReadPointer() {
+        return readPointer;
+    }
+
+    private void nextWritePointer() {
+        // TODO
+    }
+
+    private void nextReadPointer() {
+        // TODO
+    }
 }
