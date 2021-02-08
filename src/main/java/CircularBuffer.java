@@ -4,6 +4,18 @@ public class CircularBuffer {
     private int writePointer;
     private int readPointer;
 
+    public static void main(String[] args) {
+        CircularBuffer circularBuffer = new CircularBuffer();
+        circularBuffer.create();
+
+        int size = circularBuffer.getSize();
+        System.out.println(String.format("buffer size : %s", size));
+    }
+
+    private int getSize() {
+        return buffer.length;
+    }
+
     public void init(int size) {
         buffer = new String[size];
         writePointer = 0;
@@ -58,5 +70,9 @@ public class CircularBuffer {
 
     private boolean isEndBuffer(int pointer) {
         return pointer == buffer.length-1;
+    }
+
+    private boolean isFullBuffer() {
+        return readPointer == writePointer;
     }
 }
