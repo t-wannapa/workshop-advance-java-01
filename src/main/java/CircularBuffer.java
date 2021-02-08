@@ -1,18 +1,23 @@
 public class CircularBuffer {
-    private int default_buffer = 10;
+    // Variables
+    public static final int DEFAULT_SIZE = 10;
     private String[] buffer;
     private int writePointer;
     private int readPointer;
 
-    public static void main(String[] args) {
-        CircularBuffer circularBuffer = new CircularBuffer();
-        circularBuffer.create();
+    // Constructor
 
-        int size = circularBuffer.getSize();
-        System.out.println(String.format("buffer size : %s", size));
+    // Methods
+    // Public
+    public void create() {
+        create(DEFAULT_SIZE);
     }
 
-    private int getSize() {
+    public void create(int size) {
+        buffer = new String[size];
+    }
+
+    int getSize() {
         return buffer.length;
     }
 
@@ -22,13 +27,7 @@ public class CircularBuffer {
         readPointer = 0;
     }
 
-    public void create() {
-        init(default_buffer);
-    }
 
-    public void create(int size) {
-        init(size);
-    }
 
     public void write(String input) {
         int pointer = getWritePointer();
@@ -52,6 +51,7 @@ public class CircularBuffer {
         return readPointer;
     }
 
+    // Private
     private void nextWritePointer() {
         if (isEndBuffer(writePointer)) {
             writePointer = 0;
@@ -75,4 +75,6 @@ public class CircularBuffer {
     private boolean isFullBuffer() {
         return readPointer == writePointer;
     }
+
+
 }
